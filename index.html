@@ -101,6 +101,12 @@
 					this.userData.isSqueezing = true;
 					this.userData.positionAtSqueezeStart = this.position.y;
 					this.userData.scaleAtSqueezeStart = this.scale.x;
+					const intersects = raycaster.intersectObjects( scene.children );
+					const grid = controller.getObjectByName( 'grid' );
+					if ( userData.isSqueezing === true && intersects[0].object.name === 'grid') {
+						grid.visible=false;
+					}
+					
 				}
 				function onSqueezeEnd() {
 					this.userData.isSqueezing = false;
@@ -168,14 +174,11 @@
 				const userData = controller.userData;
 				const painter = userData.painter;
 				const pivot = controller.getObjectByName( 'pivot' );
-				const intersects = raycaster.intersectObjects( scene.children );
-				if ( userData.isSqueezing === true && intersects[0].object.name === 'grid1' && intersects[0].object.name === 'grid2') {
+				if ( userData.isSqueezing === true) {
 					const delta = ( controller.position.y - userData.positionAtSqueezeStart ) * 5;
 					const scale = Math.max( 0.1, userData.scaleAtSqueezeStart + delta );
 					pivot.scale.setScalar( scale );
 					painter.setSize( scale );
-					grid1.visible=false;
-					grid2.visible=false;
 				}
 				cursor.setFromMatrixPosition( pivot.matrixWorld );
 				if ( userData.isSelecting === true ) {
