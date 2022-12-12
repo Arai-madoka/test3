@@ -66,8 +66,8 @@
 					}				
 				}	
 				
-        			const gridHelper = new THREE.GridHelper(10,5,0xffffff,0xffffff);scene.add(gridHelper);
-				const pg = new THREE.PlaneGeometry( 10, 10 );const pm = new THREE.MeshBasicMaterial( {color: 0x808080, side: THREE.DoubleSide} );
+        			const gridHelper = new THREE.GridHelper(10,5,0x222222,0x222222);scene.add(gridHelper);
+				const pg = new THREE.PlaneGeometry( 10, 10 );const pm = new THREE.MeshBasicMaterial( {color: 0x778899, side: THREE.DoubleSide} );
         			const plane = new THREE.Mesh(pg, pm);plane.rotation.x =-Math.PI/2;
         			scene.add( plane );
 				scene.add( new THREE.HemisphereLight( 0x888877, 0x777788 ) );
