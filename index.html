@@ -101,14 +101,6 @@
 				gui.add( params, 'gridlength' ).onChange( render );
 				gui.domElement.style.visibility = 'hidden';
 				
-				group = new InteractiveGroup( renderer, camera );
-				scene.add( group );
-				const mesh = new HTMLMesh( gui.domElement );
-				mesh.position.x = - 0.75;mesh.position.y = 1.5;mesh.position.z = - 0.5;
-				mesh.rotation.y = Math.PI / 4;
-				mesh.scale.setScalar( 2 );
-				group.add( mesh );
-				
 				// controllers
 				function onSelectStart() {
 					this.userData.isSelecting = true;
