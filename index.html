@@ -13,7 +13,9 @@
 			import { VRButton } from 'https://unpkg.com/three@0.126.1/examples/jsm/webxr/VRButton.js';
 			import { XRControllerModelFactory } from 'https://unpkg.com/three@0.126.1/examples/jsm/webxr/XRControllerModelFactory.js';
 
-			//import { GUI } from 'https://unpkg.com/three@0.126.1/examples/jsm/libs/lil-gui.module.min.js';
+			import { GUI } from 'https://unpkg.com/three@0.126.1/examples/jsm/libs/lil-gui.module.min.js';
+			import { HTMLMesh } from 'https://unpkg.com/three@0.126.1/examples/jsm/interactive/HTMLMesh.js';
+			import { InteractiveGroup } from 'https://unpkg.com/three@0.126.1/examples/jsm/interactive/InteractiveGroup.js';
 			
 			let camera, scene, renderer;
 			let controller1, controller2;
@@ -23,6 +25,11 @@
 
 			let raycaster;
 			let controls,group;
+			
+			const params = {
+				gridside: true,
+				gridlength: true
+			};
 
 			init();
 			animate();
@@ -40,9 +47,6 @@
 				controls = new OrbitControls( camera, container );
 				controls.target.set( 0, 1.6, 0 );
 				controls.update();
-				
-				//group = new THREE.Group();
-				//scene.add( group );
 				
 				let g=new THREE.MeshBasicMaterial({color:0xc0c0c0});
 				for(let i=0;i<6;i++){
@@ -89,9 +93,22 @@
 				renderer.outputEncoding = THREE.sRGBEncoding;
 				renderer.xr.enabled = true;
 				container.appendChild( renderer.domElement );
-
 				document.body.appendChild( VRButton.createButton( renderer ) );
-
+				
+				//GUI
+				const gui = new GUI( { width: 300 } );
+				gui.add( params, 'gridside' ).onChange( render );
+				gui.add( params, 'gridlength' ).onChange( render );
+				gui.domElement.style.visibility = 'hidden';
+				
+				group = new InteractiveGroup( renderer, camera );
+				scene.add( group );
+				const mesh = new HTMLMesh( gui.domElement );
+				mesh.position.x = - 0.75;mesh.position.y = 1.5;mesh.position.z = - 0.5;
+				mesh.rotation.y = Math.PI / 4;
+				mesh.scale.setScalar( 2 );
+				group.add( mesh );
+				
 				// controllers
 				function onSelectStart() {
 					this.userData.isSelecting = true;
@@ -170,14 +187,11 @@
 				const userData = controller.userData;
 				const painter = userData.painter;
 				const pivot = controller.getObjectByName( 'pivot' );
-				const intersects = raycaster.intersectObjects( scene.children );
 				if ( userData.isSqueezing === true ) {
 					const delta = ( controller.position.y - userData.positionAtSqueezeStart ) * 5;
 					const scale = Math.max( 0.1, userData.scaleAtSqueezeStart + delta );
 					pivot.scale.setScalar( scale );
 					painter.setSize( scale );
-					grid1.visible=false;
-					grid2.visible=false;
 				}
 				cursor.setFromMatrixPosition( pivot.matrixWorld );
 				if ( userData.isSelecting === true ) {
@@ -191,6 +205,8 @@
 				renderer.setAnimationLoop( render );
 			}
 			function render() {
+				grid1.visible=false;
+				grid2.visible=false;
 				handleController( controller1 );
 				handleController( controller2 );
 				renderer.render( scene, camera );
