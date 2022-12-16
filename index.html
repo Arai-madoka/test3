@@ -13,10 +13,10 @@
 			import { VRButton } from 'https://unpkg.com/three@0.126.1/examples/jsm/webxr/VRButton.js';
 			import { XRControllerModelFactory } from 'https://unpkg.com/three@0.126.1/examples/jsm/webxr/XRControllerModelFactory.js';
 			
-			import { HTMLMesh } from 'https://unpkg.com/three@0.147.0/examples/jsm/interactive/HTMLMesh.js';;
-			import { InteractiveGroup } from 'https://unpkg.com/three@0.147.0/examples/jsm/interactive/InteractiveGroup.js';
+			//import { HTMLMesh } from 'https://unpkg.com/three@0.147.0/examples/jsm/interactive/HTMLMesh.js';;
+			//import { InteractiveGroup } from 'https://unpkg.com/three@0.147.0/examples/jsm/interactive/InteractiveGroup.js';
 			import { GUI } from 'https://unpkg.com/three@0.147.0/examples/jsm/libs/lil-gui.module.min.js';
-			import Stats from 'https://unpkg.com/three@0.147.0/examples/jsm/libs/stats.module.js';
+			//import Stats from 'https://unpkg.com/three@0.147.0/examples/jsm/libs/stats.module.js';
 			
 			let camera, scene, renderer;
 			let controller1, controller2;
@@ -73,7 +73,7 @@
 					}				
 				}	
 				
-        			const gridHelper = new THREE.GridHelper(10,5,0xffffff,0xffffff);scene.add(gridHelper);
+        			const gridHelper = new THREE.GridHelper(10,5,0xffffff,0xffffff);scene.add(gridHelper);//床
 				const pg = new THREE.PlaneGeometry( 10, 10 );const pm = new THREE.MeshBasicMaterial( {color: 0x808080, side: THREE.DoubleSide} );
         			const plane = new THREE.Mesh(pg, pm);plane.rotation.x =-Math.PI/2;
         			scene.add( plane );
@@ -102,29 +102,6 @@
 				gui.add( params, 'gridlength' ).onChange( render );
 				//gui.open();
 				gui.domElement.style.visibility = 'hidden';
-				
-				const group = new InteractiveGroup( renderer, camera );
-				scene.add( group );
-				const mesh = new HTMLMesh( gui.domElement );
-				mesh.position.x = - 0.75;
-				mesh.position.y = 1.5;
-				mesh.position.z = - 0.5;
-				mesh.rotation.y = Math.PI / 4;
-				mesh.scale.setScalar( 2 );
-				group.add( mesh );
-
-				// Add stats.js
-				stats = new Stats();
-				stats.dom.style.width = '80px';stats.dom.style.height = '48px';
-				document.body.appendChild( stats.dom );
-				
-				statsMesh = new HTMLMesh( stats.dom );
-				statsMesh.position.x = - 0.75;
-				statsMesh.position.y = 2;
-				statsMesh.position.z = - 0.6;
-				statsMesh.rotation.y = Math.PI / 4;
-				statsMesh.scale.setScalar( 2.5 );
-				group.add( statsMesh );
 				
 				// controllers
 				function onSelectStart() {
@@ -221,8 +198,8 @@
 				renderer.setAnimationLoop( render );
 			}
 			function render() {
-				grid1.visible=false;
-				grid2.visible=false;
+				//grid1.visible=false;
+				//grid2.visible=false;
 				handleController( controller1 );
 				handleController( controller2 );
 				renderer.render( scene, camera );
