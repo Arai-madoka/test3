@@ -143,10 +143,10 @@
 				controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
 				scene.add( controllerGrip2 );
 				
-				const geo = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 )]);
+				const geo = new THREE.BufferGeometry();
+				geo.setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 )]);//線、選択
 				const line = new THREE.Line( geo );
-				line.name = 'line';
-				line.scale.z = 5;
+				line.name = 'line';line.scale.z = 5;
 				controller1.add( line.clone() );
 				controller2.add( line.clone() );
 
