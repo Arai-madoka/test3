@@ -99,7 +99,7 @@
 				const gui = new GUI( { width: 300 } );
 				gui.add( params, 'gridside' ).onChange( render );
 				gui.add( params, 'gridlength' ).onChange( render );
-				gui.domElement.style.visibility = 'hidden';
+				gui.open();
 				
 				// controllers
 				function onSelectStart() {
