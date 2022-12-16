@@ -100,8 +100,8 @@
 				const gui = new GUI( { width: 300 } );
 				gui.add( params, 'gridside' ).onChange( render );
 				gui.add( params, 'gridlength' ).onChange( render );
-				//gui.open();
-				gui.domElement.style.visibility = 'hidden';
+				gui.open();
+				//gui.domElement.style.visibility = 'hidden';
 				
 				// controllers
 				function onSelectStart() {
