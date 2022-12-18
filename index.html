@@ -56,6 +56,7 @@
 				for(let i=0;i<6;i++){
 					for(let j=1;j<2;j+=0.2){
 						let grid1 =new THREE.GridHelper(1,5,g,g);
+						grid1.name='grid1';
 						grid1.myid=i;
 						grid1.rotation.x=0;
 						grid1.position.y=j;
@@ -66,6 +67,7 @@
 				for(let k=0;k<6;k++){
 					for(let n=-0.5;n<0.7;n+=0.2){
 						let grid2 =new THREE.GridHelper(1,5,g,g);
+						grid2.name='grid2';
 						grid2.myid=k;
 						grid2.rotation.x=Math.PI/2;
 						grid2.position.y=1.5;
