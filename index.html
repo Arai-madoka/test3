@@ -26,7 +26,6 @@
 			let raycaster;
 			let controls,
 			let group;
-			let stats, statsMesh;
 			
 			const params = {
 				visible: true
@@ -51,7 +50,6 @@
 				
 				group = new THREE.Group();
 				scene.add( group );
-				
 				let g=new THREE.MeshBasicMaterial({color:0xc0c0c0});
 				for(let i=0;i<6;i++){
 					for(let j=1;j<2;j+=0.2){
@@ -104,7 +102,6 @@
 
 				const gui = new GUI( { width: 300 } );
 				const folder =gui.addFolder('grid');
-				//folder.add( params, 'size'0.1,1).onChange();
 				folder.add( params, 'visible' ).onChange( function(visible){
 					group.visible=visible;
 				} );
