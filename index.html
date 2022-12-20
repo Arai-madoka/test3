@@ -103,12 +103,11 @@
 				//GUI
 
 				const gui = new GUI( { width: 300 } );
-				const folder =gui.addFolder('grid');
-				//folder.add( params, 'size'0.1,1).onChange();
-				folder.add( params, 'visible' ).onChange( function(visible){
+				//gui.add( params, 'size'0.1,1).onChange();
+				gui.add( params, 'visible' ).onChange( function(visible){
 					group.visible=visible;
 				} );
-				folder.open();
+				gui.open();
 				//gui.domElement.style.visibility = 'hidden';//右上消す
 				
 				
