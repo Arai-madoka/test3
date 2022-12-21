@@ -104,7 +104,7 @@
 				//GUI
 				const gui = new GUI( { width: 300 } );
 				gui.add( params ,'size' ,0.1,2.0).step(0.1).onChange( function(val){
-					group1.scale.set=(val,val, val);
+					group1.scale.set(val,val, val);
 				});
 				gui.add( params, 'visible' ).onChange( function(visible){
 					group1.visible=visible;
