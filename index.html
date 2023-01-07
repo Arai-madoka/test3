@@ -29,7 +29,7 @@
 
 			const params = {
 				color:0xffffff,
-				size:1.0,
+				scale:1.0,
 				visible: true
 			};
 
@@ -107,7 +107,7 @@
 				gui.addColor( params ,'color').onChange( function(color){
 					group1.color=color;
 				});
-				gui.add( params ,'size' ,0.1,2.0).step(0.1).onChange( function(val){
+				gui.add( params ,'scale' ,0.1,2.0).step(0.1).onChange( function(val){
 					group1.scale.set(val,val, val);
 				});
 				gui.add( params, 'visible' ).onChange( function(visible){
