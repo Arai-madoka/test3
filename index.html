@@ -128,16 +128,16 @@
 				controller1 = renderer.xr.getController( 0 );
 				controller1.addEventListener( 'selectstart', onSelectStart );
 				controller1.addEventListener( 'selectend', onSelectEnd );
-				controller1.addEventListener( 'squeezestart', onSqueezeStart );
-				controller1.addEventListener( 'squeezeend', onSqueezeEnd );
+				//controller1.addEventListener( 'squeezestart', onSqueezeStart );
+				//controller1.addEventListener( 'squeezeend', onSqueezeEnd );
 				controller1.userData.painter = painter1;
 				scene.add( controller1 );
 
 				controller2 = renderer.xr.getController( 1 );
 				controller2.addEventListener( 'selectstart', onSelectStart );
 				controller2.addEventListener( 'selectend', onSelectEnd );
-				controller2.addEventListener( 'squeezestart', onSqueezeStart );
-				controller2.addEventListener( 'squeezeend', onSqueezeEnd );
+				//controller2.addEventListener( 'squeezestart', onSqueezeStart );
+				//controller2.addEventListener( 'squeezeend', onSqueezeEnd );
 				controller2.userData.painter = painter2;
 				scene.add( controller2 );
 				
@@ -156,7 +156,7 @@
 				controller1.add( line.clone() );
 				controller2.add( line.clone() );
 
-				raycaster = new THREE.Raycaster();
+				//raycaster = new THREE.Raycaster();
 
 				//
 				const geometry = new THREE.CylinderGeometry( 0.01, 0.02, 0.08, 5 );
@@ -187,7 +187,6 @@
 				const userData = controller.userData;
 				const painter = userData.painter;
 				const pivot = controller.getObjectByName( 'pivot' );
-				const intersects = raycaster.intersectObjects( scene.children );
 				cursor.setFromMatrixPosition( pivot.matrixWorld );
 				if ( userData.isSelecting === true ) {
 					painter.lineTo( cursor );
