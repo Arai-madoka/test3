@@ -123,15 +123,7 @@
 				}
 				function onSelectEnd() {
 					this.userData.isSelecting = false;
-				}
-				function onSqueezeStart() {
-					this.userData.isSqueezing = true;
-					this.userData.positionAtSqueezeStart = this.position.y;
-					this.userData.scaleAtSqueezeStart = this.scale.x;
-				}
-				function onSqueezeEnd() {
-					this.userData.isSqueezing = false;
-				}				
+				}			
 
 				controller1 = renderer.xr.getController( 0 );
 				controller1.addEventListener( 'selectstart', onSelectStart );
@@ -196,12 +188,6 @@
 				const painter = userData.painter;
 				const pivot = controller.getObjectByName( 'pivot' );
 				const intersects = raycaster.intersectObjects( scene.children );
-				if ( userData.isSqueezing === true ) {
-					const delta = ( controller.position.y - userData.positionAtSqueezeStart ) * 5;
-					const scale = Math.max( 0.1, userData.scaleAtSqueezeStart + delta );
-					pivot.scale.setScalar( scale );
-					painter.setSize( scale );
-				}
 				cursor.setFromMatrixPosition( pivot.matrixWorld );
 				if ( userData.isSelecting === true ) {
 					painter.lineTo( cursor );
